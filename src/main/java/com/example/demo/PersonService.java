@@ -35,7 +35,17 @@ public class PersonService {
                 .then();
     }
 
+    public Mono<Void> delete(String id){
+        return repository.findById(id)
+                .flatMap(elemento -> {
+                    return repository.deleteById(elemento.getId());
+                });
+    }
 
+
+    public Mono<Person> findById(String id){
+        return repository.findById(id);
+    }
 
 
 }
